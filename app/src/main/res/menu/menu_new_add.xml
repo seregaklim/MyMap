@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NMedia</string>
+    <string name="description_maps_search">Найти</string>
+    <string name="description_maps_menu">Меню карты</string>
+    <string name="menu_share">Поделиться</string>
+    <string name="menu_ad" >Добавить метку</string>
+    <string name="add_save">Сохранить метку</string>
+
+</resources>

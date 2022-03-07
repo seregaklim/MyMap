@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NMedia</string>
+    <string name="description_maps_search">Search</string>
+    <string name="description_maps_menu">Menu map</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_ad" >Add mark</string>
+    <string name="add_save">Save mark</string>
+
+</resources>
