@@ -23,7 +23,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
             }
 
             intent.removeExtra(Intent.EXTRA_TEXT)
-            findNavController(R.id.nav_host_fragment)
+            findNavController(R.id.feedFragment)
                 .navigate(
                     R.id.action_feedFragment_to_markMapsFragment,
                     Bundle().apply {

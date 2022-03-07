@@ -29,7 +29,7 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.extensions.icon
 
 
-class MapsFragment : Fragment() {
+class FeedFragment : Fragment() {
     private lateinit var googleMap: GoogleMap
 
 
