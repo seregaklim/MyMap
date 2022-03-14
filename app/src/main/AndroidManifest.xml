@@ -3,10 +3,10 @@
     package="ru.netology.nmedia">
 
 
-    <!-- gps -->
+<!--     gps-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <!-- mobile / wi-fi -->
+<!--     mobile / wi-fi-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
@@ -23,6 +23,9 @@
             android:value="${mapsApiKey}" />
 
         <activity android:name=".activity.AppActivity">
+<!--           android:exported="true"-->
+
+            >
             <nav-graph android:value="@navigation/nav_main" />
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -40,3 +43,18 @@
         </application>
 
 </manifest>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
