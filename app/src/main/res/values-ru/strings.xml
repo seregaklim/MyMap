@@ -6,5 +6,5 @@
     <string name="menu_share">Поделиться</string>
     <string name="menu_ad" >Добавить метку</string>
     <string name="add_save">Сохранить метку</string>
-
+    <string name="add_save_mark">Cохранить метку</string>
 </resources>

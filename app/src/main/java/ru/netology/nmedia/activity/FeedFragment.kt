@@ -84,7 +84,7 @@ class FeedFragment : Fragment() {
         )
 
 
-        val adapter =  mMap?.setOnMapClickListener(object :
+          mMap?.setOnMapClickListener(object :
             GoogleMap.OnMapClickListener {
 
             override fun onMapClick(latlng: LatLng) {
@@ -193,7 +193,7 @@ class FeedFragment : Fragment() {
 
 
 
-        //  return inflater.inflate(R.layout.fragment_feed, container, false)
+        // return inflater.inflate(R.layout.fragment_feed, container, false)
         return binding.root
 
     }
