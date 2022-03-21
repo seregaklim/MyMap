@@ -1,7 +1,6 @@
 package ru.netology.nmedia.viewmodel
 import android.app.Application
 import androidx.lifecycle.*
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.dto.Maps
@@ -53,13 +52,15 @@ class MapsViewModel (application: Application) : AndroidViewModel(application){
 
 
 
-    fun changeLocation(location:  LatLng) {
-        edited.value = edited.value?.copy(location = location)
+    fun changeLocation(location: LatLng?) {
+        edited.value = location?.let { edited.value?.copy(location = it) }
+
+    
     }
 
-    fun changeIcon(icon: String) {
-       edited.value = edited.value?.copy(icon = "dom")
-    }
+//    fun changeIcon(icon: String) {
+//       edited.value = edited.value?.copy(icon = "dom")
+//    }
 
 
 }
