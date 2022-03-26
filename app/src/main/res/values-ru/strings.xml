@@ -3,8 +3,44 @@
     <string name="app_name">NMedia</string>
     <string name="description_maps_search">Найти</string>
     <string name="description_maps_menu">Меню карты</string>
-    <string name="menu_share">Поделиться</string>
+    <string name="menu_view_your_points">Просмотр  своих точек</string>
     <string name="menu_ad" >Добавить метку</string>
     <string name="add_save">Сохранить метку</string>
     <string name="add_save_mark">Cохранить метку</string>
+
+    <string name="description_mark_title_icon">Картинка названия метки</string>
+    <string name="description_mark_menu">Меню ваших меток</string>
+    <string name="mark_remove">Удалить метку</string>
+    <string name="mark_text">Ваши метки</string>
+    <string name="mark_edit">Редактировать</string>
+    <string name="error_empty_content">Контент не может быть пустым</string>
+    <string name="text_map_ad">Прикоснитесь по экрану телефона в нужное место и поставьте маркер!</string>
+
+    <string name="kategoria_park">Парк!</string>
+    <string name="kategoria_hotel">Гостиница!</string>
+    <string name="kategoria_Bus_station">Автовокзал!</string>
+    <string name="kategoria_Guest_house">Гостевой дом!</string>
+    <string name="kategoria_Gas_station">Заправка!</string>
+    <string name="kategoria_Cafe">Кафе!</string>
+    <string name="kategoria_Shop">Магазин!</string>
+    <string name="kategoria_Restaurant">Ресторан!</string>
+    <string name="kategoria_Beach">Пляж!</string>
+    <string name="kategoria_Toilet">Туалет!</string>
+    <string name="kategoria_Fast_Food">Фастфуд!</string>
+    <string name="kategoria_Stop">Остановка!</string>
+    <string name="kategoria_Bike_rental">Велопрокат!</string>
+    <string name="mark" >Маркер на карте</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>

@@ -5,22 +5,120 @@
     android:id="@+id/nav_main"
     app:startDestination="@id/feedFragment">
 
+
+
     <fragment
         android:id="@+id/feedFragment"
         android:name="ru.netology.nmedia.activity.FeedFragment"
         android:label="fragment_feed"
-        tools:layout="@layout/fragment_feed">
+        tools:layout="@layout/fragment_feed" >
         <action
-            android:id="@+id/action_feedFragment_to_markMapsFragment"
-            app:destination="@id/fragmentMarkMaps"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+            android:id="@+id/action_feedFragment_to_marksFragment"
+            app:destination="@id/marksFragment" />
+        <action
+            android:id="@+id/action_feedFragment_to_fragmentNewMaps"
+            app:destination="@id/fragmentNewMaps" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentMarkMaps"
-        android:name="ru.netology.nmedia.activity.MarkMapsFragment"
-        android:label="fragment_mark_maps"
-        tools:layout="@layout/fragment_mark_maps" />
+        android:id="@+id/fragmentNewMaps"
+        android:name="ru.netology.nmedia.activity.FragmentNewMaps"
+        android:label="FragmentNewMaps"
+        tools:layout="@layout/fragment_new_maps"
+        />
+    <fragment
+        android:id="@+id/marksFragment"
+        android:name="ru.netology.nmedia.activity.MarksFragment"
+        android:label="MarksFragment"
+        tools:layout="@layout/fragment_my_mark"
+        >
+        <action
+            android:id="@+id/action_marksFragment_to_fragmentEditMark"
+            app:destination="@id/fragmentEditMark" />
+        <action
+            android:id="@+id/action_marksFragment_to_fragmentMyMarkMap"
+            app:destination="@id/fragmentMyMarkMap" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEditMark"
+        android:name="ru.netology.nmedia.activity.FragmentEditMark"
+        android:label="FragmentEditMark"
+        tools:layout="@layout/fragment_edit_mark"
+
+        />
+    <fragment
+        android:id="@+id/fragmentMyMarkMap"
+        android:name="ru.netology.nmedia.activity.FragmentMyMarkMap"
+        android:label="FragmentMyMarkMap"
+        tools:layout="@layout/fragment_my_mark_map"
+
+        />
+
+
 </navigation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--    <fragment-->
+    <!--        android:id="@+id/feedFragment"-->
+    <!--        android:name="ru.netology.nmedia.activity.FeedFragment"-->
+    <!--        android:label="fragment_feed"-->
+    <!--        tools:layout="@layout/fragment_feed">-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_feedFragment_to_newMapsFragment"-->
+    <!--            app:destination="@id/fragmentNewMaps"-->
+    <!--            app:enterAnim="@android:anim/fade_in"-->
+    <!--            app:exitAnim="@android:anim/fade_out"-->
+    <!--            app:popEnterAnim="@android:anim/fade_in"-->
+    <!--            app:popExitAnim="@android:anim/fade_out"-->
+    <!--            />-->
+    <!--        <action-->
+    <!--            android:id="@+id/action_feedFragment_to_marksFragment"-->
+    <!--            app:destination="@id/marksFragment"-->
+    <!--            app:enterAnim="@android:anim/fade_in"-->
+    <!--            app:exitAnim="@android:anim/fade_out"-->
+    <!--            app:popEnterAnim="@android:anim/fade_in"-->
+    <!--            app:popExitAnim="@android:anim/fade_out"-->
+    <!--            />-->
+    <!--    </fragment>-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/fragmentNewMaps"-->
+    <!--        android:name="ru.netology.nmedia.activity.FragmentNewMaps"-->
+    <!--        android:label="fragment_new_maps"-->
+    <!--        tools:layout="@layout/fragment_new_maps" />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/marksFragment"-->
+    <!--        android:name="ru.netology.nmedia.activity.MarksFragment"-->
+    <!--        android:label="fragment_marks"-->
+    <!--        tools:layout="@layout/fragment_my_mark" />-->
+
+    <!--</navigation>-->

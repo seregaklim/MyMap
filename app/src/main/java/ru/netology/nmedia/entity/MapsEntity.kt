@@ -11,17 +11,17 @@ import ru.netology.nmedia.dto.Maps
 data class MapsEntity(
     @PrimaryKey(autoGenerate = true)
     val id:Long,
+    val  title:String,
     val content:String,
-    val icon:String,
     @Embedded
     val location:  LatLng ,
 
     ) {
-    fun toDto() = Maps(id,content, icon,location)
+    fun toDto() = Maps(id, title ,content,location)
 
     companion object {
         fun fromDto(dto: Maps) =
-            MapsEntity(dto.id, dto.content,dto.icon,dto.location)
+            MapsEntity(dto.id,dto.title, dto.content,dto.location)
 
     }
 }

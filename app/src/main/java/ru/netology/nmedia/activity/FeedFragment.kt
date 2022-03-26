@@ -4,17 +4,13 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.os.Parcelable
-import android.provider.Settings.Global.putString
+import android.util.Log
 import android.view.*
-import android.view.View.INVISIBLE
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
@@ -23,25 +19,19 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.collections.MarkerManager
-import com.google.maps.android.ktx.awaitAnimateCamera
 import com.google.maps.android.ktx.awaitMap
 import com.google.maps.android.ktx.model.cameraPosition
 import com.google.maps.android.ktx.utils.collection.addMarker
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.MarkMapsFragment.Companion.textArg
 import ru.netology.nmedia.extensions.icon
-import ru.netology.nmedia.util.AndroidUtils
-import android.os.Parcel
-import android.view.View.inflate
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.material.snackbar.Snackbar
-import com.google.maps.android.ktx.myLocationClickEvents
+import com.google.maps.android.ktx.awaitAnimateCamera
 import ru.netology.nmedia.BuildConfig
+import ru.netology.nmedia.R.drawable
+import ru.netology.nmedia.databinding.ActivityAppBinding.inflate
 import ru.netology.nmedia.databinding.FragmentFeedBinding
+
 import ru.netology.nmedia.dto.Maps
 import ru.netology.nmedia.viewmodel.MapsViewModel
 
@@ -69,8 +59,6 @@ class FeedFragment : Fragment() {
         }
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -84,47 +72,88 @@ class FeedFragment : Fragment() {
         )
 
 
-          mMap?.setOnMapClickListener(object :
-            GoogleMap.OnMapClickListener {
 
-            override fun onMapClick(latlng: LatLng) {
-                fun bind(maps: Maps){
+        viewModel.data.observe(viewLifecycleOwner) { map ->
+            binding.apply {
+                val markerManager = MarkerManager(googleMap)
+                //МАРКЕРЫ
+                val collection: MarkerManager.Collection =
+                    markerManager.newCollection()
 
-                    val markerManager = MarkerManager(googleMap)
-                    //МАРКЕРЫ
-                    val collection: MarkerManager.Collection = markerManager.newCollection().apply {
+
+
+
+
+                map.forEach { maps ->
+                    collection.apply {
+
                         addMarker {
-                            position(  maps.location)
-                            icon(getDrawable(requireContext(), R.drawable.ic_netology_48dp)!!)
-                            title("${maps.content}")
+                            position(maps.location)
+                            title(maps.title)
+                            when (maps.title) {
+
+                                "Bike Rental" -> icon(
+                                    getDrawable(
+                                        requireContext(),
+                                        R.drawable.bycycle2
+                                    )!!
+                                )
+
+                                "Cafe" -> icon(getDrawable(requireContext(), R.drawable.cafe2)!!)
+
+                                "Restaurant" -> icon(
+                                    getDrawable(
+                                        requireContext(),
+                                        R.drawable.restoran2_foreground
+                                    )!!
+                                )
+                                "Shop" -> icon(
+                                    getDrawable(
+                                        requireContext(),
+                                        R.drawable.shop2_foreground
+                                    )!!
+                                )
+                                "Hotel" -> icon(
+                                    getDrawable(
+                                        requireContext(),
+                                        R.drawable.hotel2_foreground
+                                    )!!
+                                )
+                                "Guest House" -> icon(
+                                    getDrawable(
+                                        requireContext(),
+                                        R.drawable.guest_hous2
+                                    )!!
+                                )
+
+                                else -> icon
+                            }
+
+
                         }.apply {
-                            tag = "Any additional data" // Any
+
+                            tag = "${maps.content}" // Any
+
+
+                            collection.setOnMarkerClickListener { marker ->
+                                // TODO: work with marker
+
+                                Toast.makeText(
+                                    requireContext(),
+                                    (marker.tag as String),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                true
+                            }
+
                         }
                     }
-                    collection.setOnMarkerClickListener { marker ->
-                        // TODO: work with marker
-                        Toast.makeText(
-                            requireContext(),
-                            (marker.tag as String),
-                            Toast.LENGTH_LONG
-                        ).show()
-                        true
-                    }
-
-                    CameraUpdateFactory.newCameraPosition(
-                        cameraPosition {
-                            target( maps.location)
-                            zoom(15F)
-                        }
-
-
-                    )
                 }
             }
-        })
+        }
 
 
-        binding.indicatorAdd.visibility = View.INVISIBLE
+        binding.textAddMap.visibility = View.INVISIBLE
 
         binding.menu.setOnClickListener {
 
@@ -138,7 +167,7 @@ class FeedFragment : Fragment() {
                         //добавить маркер
                         R.id.add -> {
 
-                            binding.indicatorAdd.visibility = View.VISIBLE
+                            binding.textAddMap.visibility = View.VISIBLE
 
 
                             val mMap = googleMap
@@ -146,7 +175,6 @@ class FeedFragment : Fragment() {
 
                             mMap.setOnMapClickListener(object :
                                 GoogleMap.OnMapClickListener {
-
 
 
                                 override fun onMapClick(latlng: LatLng) {
@@ -157,16 +185,15 @@ class FeedFragment : Fragment() {
 
 
 
-                                    findNavController().navigate(R.id.action_feedFragment_to_markMapsFragment,
+                                    findNavController().navigate(R.id.action_feedFragment_to_fragmentNewMaps,
                                         Bundle().apply {
 
                                             putParcelable("location", location)
 
-//                                            mMap.setOnMapClickListener(null)
                                         }
                                     )
 
-                                 mMap.setOnMapClickListener(null)
+                                    mMap.setOnMapClickListener(null)
                                 }
 
                             }
@@ -175,8 +202,8 @@ class FeedFragment : Fragment() {
 
                             true
                         }
-                        R.id.share -> {
-
+                        R.id.yourPoints -> {
+                            findNavController().navigate(R.id.action_feedFragment_to_marksFragment,)
 
                             true
                         }
@@ -191,12 +218,14 @@ class FeedFragment : Fragment() {
         }
 
 
-
-
-        // return inflater.inflate(R.layout.fragment_feed, container, false)
+        //  return inflater.inflate(R.layout.fragment_feed, container, false)
         return binding.root
 
     }
+
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
 
@@ -252,42 +281,44 @@ class FeedFragment : Fragment() {
                 }
             }
 
-            //Для управления камерой, а именно ее перемещениями,
-            // есть связка из:CameraUpdateFactory,CameraPosition.Builder'и animateCamera
-            val target = LatLng(55.751999, 37.617734)
-            val markerManager = MarkerManager(googleMap)
 
-            //МАРКЕРЫ
-            val collection: MarkerManager.Collection = markerManager.newCollection().apply {
-                addMarker {
-                    position(target)
-                    icon(getDrawable(requireContext(), R.drawable.ic_netology_48dp)!!)
-                    title("The Moscow Kremlin")
-                }.apply {
-                    tag = "Any additional data" // Any
-                }
-            }
-            collection.setOnMarkerClickListener { marker ->
-                // TODO: work with marker
-                Toast.makeText(
-                    requireContext(),
-                    (marker.tag as String),
-                    Toast.LENGTH_LONG
-                ).show()
-                true
-            }
-
-            googleMap.awaitAnimateCamera(
-                CameraUpdateFactory.newCameraPosition(
-                    cameraPosition {
-                        target(target)
-                        zoom(15F)
-                    }
-                ))
+//            //Для управления камерой, а именно ее перемещениями,
+//            // есть связка из:CameraUpdateFactory,CameraPosition.Builder'и animateCamera
+//            val target = LatLng(55.751999, 37.617734)
+//            val markerManager = MarkerManager(googleMap)
+//
+//            //МАРКЕРЫ
+//           val collection: MarkerManager.Collection = markerManager.newCollection().apply {
+//              addMarker {
+//                    position(target)
+//                    icon(getDrawable(requireContext(), drawable.ic_netology_48dp)!!)
+//                    title("The Moscow Kremlin")
+//               }.apply {
+//                    tag = "Any additional data" // Any
+//                }
+//            }
+//            collection.setOnMarkerClickListener { marker ->
+//                // TODO: work with marker
+//                Toast.makeText(
+//                    requireContext(),
+//                    (marker.tag as String),
+//                    Toast.LENGTH_LONG
+//                ).show()
+//                true
+//            }
+//
+//            googleMap.awaitAnimateCamera(
+//                CameraUpdateFactory.newCameraPosition(
+//                    cameraPosition {
+//                        target(target)
+//                        zoom(15F)
+//                    }
+//                ))
         }
     }
 
 }
+
 
 
 

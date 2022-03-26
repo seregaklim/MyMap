@@ -4,12 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import ru.netology.nmedia.R
-import ru.netology.nmedia.activity.MarkMapsFragment.Companion.textArg
+import ru.netology.nmedia.activity.FragmentNewMaps.Companion.textArg
 
 class AppActivity : AppCompatActivity(R.layout.activity_app) {
 
@@ -33,11 +29,40 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
             intent.removeExtra(Intent.EXTRA_TEXT)
             findNavController(R.id.feedFragment)
                 .navigate(
-                    R.id.action_feedFragment_to_markMapsFragment,
+                    R.id.action_feedFragment_to_fragmentNewMaps,
                     Bundle().apply {
                         textArg = text
                     }
                 )
+
+            intent.removeExtra(Intent.EXTRA_TEXT)
+            findNavController(R.id.feedFragment)
+                .navigate(
+                    R.id.action_feedFragment_to_marksFragment,
+                    Bundle().apply {
+                        textArg = text
+                    }
+                )
+
+            intent.removeExtra(Intent.EXTRA_TEXT)
+            findNavController(R.id.marksFragment)
+                .navigate(
+                    R.id. action_marksFragment_to_fragmentEditMark  ,
+                    Bundle().apply {
+                        textArg = text
+                    }
+                )
+
+            intent.removeExtra(Intent.EXTRA_TEXT)
+            findNavController(R.id.marksFragment)
+                .navigate(
+                    R.id. action_marksFragment_to_fragmentMyMarkMap ,
+                    Bundle().apply {
+                        textArg = text
+                    }
+                )
+
+
         }
     }
 }

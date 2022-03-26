@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Название",
+      "address": "адрес",
+      "content": "Описание",
+      "icon": "@sample/maps_avatars",
+      "location": "0,56776765,0.346534654"
+
+    }
+  ]
+}

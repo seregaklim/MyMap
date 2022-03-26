@@ -11,7 +11,7 @@ class MapsRepositoryImpl(
 
     override fun getAll() = Transformations.map(dao.getAll()) { list ->
         list.map {
-            Maps(it.id, it.content,it.icon,it.location)
+            Maps(it.id,it.title, it.content,it.location)
         }
     }
 

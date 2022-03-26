@@ -1,13 +1,33 @@
 <resources>
-    <string name="app_name">NMedia</string>
+    <string name="app_name">NMediaMyMaps</string>
     <string name="description_maps_search">Search</string>
     <string name="description_maps_menu">Menu map</string>
-    <string name="menu_share">Share</string>
+    <string name="menu_view_your_points">View your points</string>
     <string name="menu_ad" >Add mark</string>
     <string name="add_save">Save mark</string>
     <string name="add_save_mark">Save  mark</string>
+    <string name="description_mark_title_icon">Title icon</string>
+    <string name="description_mark_menu">Mark menu</string>
+    <string name="mark_remove">Remove</string>
+    <string name="mark_text">You mark</string>
+    <string name="mark_edit">Edit</string>
+    <string name="error_empty_content">Content can\'t be empty</string>
+    <string name="text_map_ad">Touch the phone screen to the right place and put a marker!</string>
 
-
+    <string name="kategoria_park">Park!</string>
+    <string name="kategoria_hotel">The hotel!</string>
+    <string name="kategoria_Bus_station">Bus station!</string>
+    <string name="kategoria_Guest_house">Guest house!</string>
+    <string name="kategoria_Gas_station">Gas station!</string>
+    <string name="kategoria_Cafe">Cafe!</string>
+    <string name="kategoria_Shop">Shop!</string>
+    <string name="kategoria_Restaurant">Restaurant!</string>
+    <string name="kategoria_Beach">The Beach!</string>
+    <string name="kategoria_Toilet">Toilet!</string>
+    <string name="kategoria_Fast_Food">Fast Food!</string>
+    <string name="kategoria_Stop">Stop!</string>
+    <string name="kategoria_Bike_rental">Bike rental!</string>
+    <string name="mark" >Mark on the map</string>
 
 
 </resources>

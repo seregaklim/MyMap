@@ -10,8 +10,8 @@ import ru.netology.nmedia.repository.MapsRepositoryImpl
 
  private val  empty =Maps(
      id = 0,
+     title="кафе",
      content = "",
-     icon ="",
      location =  LatLng(0.2,0.2)
  )
 
@@ -50,6 +50,13 @@ class MapsViewModel (application: Application) : AndroidViewModel(application){
         edited.value = edited.value?.copy(content = text)
     }
 
+    fun changeTitle( title: String) {
+        val text =  title.trim()
+        if (edited.value?.title == text) {
+            return
+        }
+        edited.value = edited.value?.copy(title = text)
+    }
 
 
     fun changeLocation(location: LatLng?) {
@@ -57,10 +64,10 @@ class MapsViewModel (application: Application) : AndroidViewModel(application){
 
     
     }
+    fun removeById(id: Long) = repository.removeById(id)
 
-//    fun changeIcon(icon: String) {
-//       edited.value = edited.value?.copy(icon = "dom")
-//    }
+
+
 
 
 }
